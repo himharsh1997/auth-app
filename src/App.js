@@ -16,9 +16,9 @@ import React from 'react';
      {
        const accessToken = await getAccessTokenFromCode(urlParams.code);
        if(accessToken){
-            document.getElementById('my-login-card').innerHTML = `My access token: ${accessToken} `
+            document.getElementById('my-login-card').innerHTML = `<p style='font-size: 14px;'>My access token: ${accessToken}</p>`
        } else {
-        document.getElementById('my-login-card').innerHTML = `Something went wrong while getting token  `
+        document.getElementById('my-login-card').innerHTML = `<p style='font-size: 25px;'>Something went wrong while getting token</p>`
        }
      }
 
