@@ -1,7 +1,7 @@
 const queryString = require('query-string');
 
   const stringifiedParams = queryString.stringify({
-    client_id: '235821818120555' || process.env.FACEBOOK_APIID,
+    client_id: 'e500c958a3c7abf72375381996359848' || process.env.FACEBOOK_APIID,
     redirect_uri: 'https://www.example.com/authenticate/facebook/',
     scope: ['email', 'user_friends'].join(','), // comma seperated string
     response_type: 'code',
