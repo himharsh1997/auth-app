@@ -9,7 +9,10 @@ import * as queryString from 'query-string';
 function App(){
 
   const urlParams = queryString.parse(window.location.search);
-  alert(urlParams.code);
+  if(urlParams.code)
+   {
+     alert(urlParams.code);
+   }
     return (
       <div className="App">
       <Card className="text-center mt-1" bg={'light'}
