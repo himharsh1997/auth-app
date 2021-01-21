@@ -4,26 +4,38 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { FacebookLoginButton } from "react-social-login-buttons";
 import {facebookLoginUrl} from './fb.config';
 import * as queryString from 'query-string';
+import {getAccessTokenFromCode} from './fb.proxy';
+import React from 'react';
 
+ class App extends React.Component{
 
-function App(){
+  async componentDidMount(){
+    const urlParams = queryString.parse(window.location.search);
+    console.log(urlParams);
+    if(urlParams.code)
+     {
+       const accessToken = await getAccessTokenFromCode(urlParams.code);
+       if(accessToken){
+            document.getElementById('my-login-card').innerHTML = `My access token: ${accessToken} `
+       } else {
+        document.getElementById('my-login-card').innerHTML = `Something went wrong while getting token  `
+       }
+     }
 
-  const urlParams = queryString.parse(window.location.search);
-  if(urlParams.code)
-   {
-     alert(urlParams.code);
-   }
+  }
+  render(){
     return (
       <div className="App">
-      <Card className="text-center mt-1" bg={'light'}
-        key={6} text={ 'dark' } className='mb-2'>
+      <Card id='my-login-card' className="text-center mt-1" bg={'light'}
+        key={6} text={ 'dark' } >
        <Card.Text><b>Auth Test Login </b></Card.Text>
-       <Card.Body>
+       <Card.Body id='my-login-card'>
         <a href={facebookLoginUrl}><FacebookLoginButton ></FacebookLoginButton></a>
        </Card.Body>
          </Card>
       </div>
     );
+  }
   
 }
 
